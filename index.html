@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Findr - Smart Campus Lost and Found</title>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- MODULE 1: LOGIN / SIGN UP -->
+  <section id="auth" class="auth hidden">
+    <div class="auth-art">
+      <div class="logo big">🏷️</div>
+      <h1>Findr</h1>
+      <p>Lost it? Found it? Tag it. Campus lost and found that matches items for you.</p>
+      <ul>
+        <li>Report in under a minute</li>
+        <li>Automatic match suggestions</li>
+        <li>Claims checked by security</li>
+      </ul>
+    </div>
+
+    <div class="auth-form">
+      <div class="seg">
+        <button id="tabLogin" class="on" onclick="authTab('login')">Log in</button>
+        <button id="tabSignup" onclick="authTab('signup')">Sign up</button>
+      </div>
+
+      <form id="loginForm" onsubmit="doLogin(event)">
+        <label>Campus email <input type="email" id="lEmail" required></label>
+        <label>Password <input type="password" id="lPass" required></label>
+        <button class="btn wide">Log in</button>
+        <p class="hint">
+          Admin: admin@campus.edu / admin123<br>
+          Student: asha@campus.edu / asha123
+        </p>
+      </form>
+
+      <form id="signupForm" class="hidden" onsubmit="doSignup(event)">
+        <label>Full name <input id="sName" required></label>
+        <label>Campus email <input type="email" id="sEmail" required></label>
+        <div class="two">
+          <label>I am a
+            <select id="sRole">
+              <option value="student">Student</option>
+              <option value="staff">Staff</option>
+            </select>
+          </label>
+          <label>Phone <input id="sPhone" placeholder="Optional"></label>
+        </div>
+        <label>Password (6+ characters) <input type="password" id="sPass" minlength="6" required></label>
+        <button class="btn wide">Create account</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- MAIN APP -->
+  <div id="app" class="hidden">
+    <header class="top">
+      <div class="brand"><span class="logo">🏷️</span> Findr</div>
+      <nav id="nav"></nav>
+      <div class="me">
+        <div class="avatar" id="avatar"></div>
+        <div class="me-text"><b id="meName"></b><small id="meRole"></small></div>
+        <button class="chip" onclick="logout()">Log out</button>
+      </div>
+    </header>
+
+    <main id="page" class="wrap"></main>
+  </div>
+
+  <!-- POPUP -->
+  <div id="modal" class="modal hidden" onclick="if (event.target === this) closeModal()">
+    <div class="sheet">
+      <button class="x" onclick="closeModal()" aria-label="Close">✕</button>
+      <div id="sheet"></div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+<script>window.FINDR_API_URL = "";</script>
+<script src="script.js"></script>
+<script src="api.js"></script>
+</body>
+
+</html>
